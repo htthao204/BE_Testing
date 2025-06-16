@@ -1,67 +1,3 @@
-#server:
-#  port: 8080
-#  address: 0.0.0.0
-#  servlet:
-#    context-path: /api
-##
-##spring:
-##  security:
-##    oauth2:
-##      client:
-##        registration:
-##          google:
-##            client-id: "1058050958802-3rg7a591lnk89estf6bm7pa7ngh9nct0.apps.googleusercontent.com"
-##            client-secret: YOUR_GOOGLE_CLIENT_SECRET
-##            scope:
-##              - email
-##              - profile
-##        provider:
-##          google:
-##            authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
-##            token-uri: https://oauth2.googleapis.com/token
-##            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
-##            user-name-attribute: sub
-#spring:
-#  security:
-#    oauth2:
-#      client:
-#        registration:
-#          google:
-#            client-id: 1058050958802-cus5mo8f79r3mpve2vg1ebedgvmcq9op.apps.googleusercontent.com
-#            client-secret: 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
-#            scope: profile, email
-#            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
-#
-#spring:
-#  datasource:
-#    url: jdbc:mysql://localhost:3307/YummyDaily?useSSL=false&serverTimezone=UTC
-#    username: root
-#    password: htt150704
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#  mvc:
-#    locale: vi_VN
-#  messages:
-#    basename: messages
-#    encoding: UTF-8
-#  http:
-#    encoding:
-#      charset: UTF-8
-#      enabled: true
-#      force: true
-#
-#  jpa:
-#    database-platform: org.hibernate.dialect.MySQL8Dialect
-#    hibernate:
-#      ddl-auto: update
-#    show-sql: true
-##logging:
-##  level:
-##    org.springframework.security: DEBUG
-#
-#
-#jwt:
-#  signerKey: "H35ZLxHVhpqJ/HzHxIGyHCOkBYbmL/9e3xPZ7Yn5CzQepN4cIqJwEcS9orBFk38Q"
-
 server:
   port: 8080
   address: 0.0.0.0
@@ -80,16 +16,18 @@ spring:
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
 
   datasource:
-    url: jdbc:mysql://localhost:3307/YummyDaily?useSSL=false&serverTimezone=UTC
-    username: root
-    password: htt150704
+    url: jdbc:mysql://mysql:3306/YummyDaily?useSSL=false&serverTimezone=UTC
+    username: springboot
+    password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   mvc:
     locale: vi_VN
+
   messages:
     basename: messages
     encoding: UTF-8
+
   http:
     encoding:
       charset: UTF-8
