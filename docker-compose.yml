@@ -1,38 +1,63 @@
-version: '3.9'
+#version: '3.9'
+#services:
+#  mysql:
+#    image: mysql:8.0
+#    container_name: mysql
+#    ports:
+#      - "3306:3306"
+#    environment:
+#      MYSQL_ROOT_PASSWORD: rootpass
+#      MYSQL_DATABASE: YummyDaily
+#      MYSQL_USER: springboot
+#      MYSQL_PASSWORD: 123456
+#    command: --default-authentication-plugin=mysql_native_password
+#    volumes:
+#      - mysql_data:/var/lib/mysql
+#    healthcheck:
+#      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+#      interval: 5s
+#      timeout: 5s
+#      retries: 10
+#
+#  app:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    container_name: yummy-app
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      mysql:
+#        condition: service_healthy
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/YummyDaily?useSSL=false&serverTimezone=UTC
+#      SPRING_DATASOURCE_USERNAME: springboot
+#      SPRING_DATASOURCE_PASSWORD: 123456
+#
+#volumes:
+#  mysql_data:
+version: '3.8'
 services:
   mysql:
     image: mysql:8.0
-    container_name: mysql
+    container_name: mysqldb
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password --bind-address=0.0.0.0
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: mydb
     ports:
       - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpass
-      MYSQL_DATABASE: YummyDaily
-      MYSQL_USER: springboot
-      MYSQL_PASSWORD: 123456
-    command: --default-authentication-plugin=mysql_native_password
-    volumes:
-      - mysql_data:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
 
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: yummy-app
+  springboot:
+    build: .
+    container_name: springboot-app
+    depends_on:
+      - mysql
     ports:
       - "8080:8080"
-    depends_on:
-      mysql:
-        condition: service_healthy
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/YummyDaily?useSSL=false&serverTimezone=UTC
-      SPRING_DATASOURCE_USERNAME: springboot
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mydb
+      SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 123456
 
-volumes:
-  mysql_data:

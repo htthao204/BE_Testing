@@ -15,11 +15,11 @@ spring:
             scope: profile, email
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
 
-  datasource:
-    url: jdbc:mysql://mysql:3306/YummyDaily?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
-    username: springboot
-    password: 123456
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    datasource:
+      url: jdbc:mysql://mysql:3306/mydb?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+      username: root
+      password: 123456
+
 
   mvc:
     locale: vi_VN
